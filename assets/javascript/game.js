@@ -14,10 +14,15 @@ window.onload = function() {
 	var gameOn = true;
 
 	// variable to keep track of # of guesses remaining
-	var guessCount; 
+	var guessCount = 0; 
+
+	document.getElementById('counter').innerHTML = "Number of Guesses: " + guessCount + "/10";
 
 	// array to keep track of user's guesses
 	var userGuess =[];
+
+	document.getElementById("letters").innerHTML = "Letters Used: " + userGuess.join(" ");
+
 
 	// array of available letters to guess
 	var alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 
@@ -31,45 +36,48 @@ window.onload = function() {
 					'squirtle', 'wartortle', 'blastoise', 
 					'pikachu'];
 
-	// randomized mystery pokemon, and splits the string into an array
-	var mysterypkmn = pokemon[Math.floor(Math.random() * 10)];
-	// log mysterypkmn in console
-	console.log(mysterypkmn);
 
-	var guesspkmn = mysterypkmn.split("").map(function(){
-		return"_";
-	})
+	var mysterypkmn;
+	var guesspkmn;
 
-	// log guesspkmn in console
-	console.log(guesspkmn);
+	// function get randomized mystery pokemon from pokemon array
+	 function getPokemon(pokemonArray) { 
+		var getmysterypkmn = pokemon[Math.floor(Math.random() * 10)];
+		// log mysterypkmn in console
+		console.log(getmysterypkmn);
+
+		return getmysterypkmn;
+	}
+
+	// function to translate mystery pokemon into blanks
+	function createBlanks(getmysterypkmn) {
+		
+		// get blanks
+		var getguesspkmn = getmysterypkmn.split("").map(function(){
+			
+			return "_";
+
+		});
+
+		// log guesspkmn in console
+		console.log(getguesspkmn);
+	
+		return getguesspkmn;
+	};
 
 	/* ----------- KEY PRESS FUNCTIONS ---------- */
 
 	var index; 
 	var letterGuess;
 
-	document.onkeyup = function(event) {
-
-
-		// variable to hold user's letter guess
-		letterGuess = String.fromCharCode(event.keyCode).toLowerCase();
-
-		if (alphabet.indexOf(letterGuess) > -1) {
-			// log letterGuess in the console
-			console.log(letterGuess);
-
-			// grabs the index of the letterGuess in mysterpkmn array
-			index = mysterypkmn.indexOf(letterGuess);
-		}
-
-		return index;
-	}
-
 	/* ------------ GAME PLAY FUNCTIONS ------------ */ 
 
 	/* 
 
-		while not game over, keep playing
+		// get random pokemon
+		// display blank guesspkmn values
+		// play game
+		// reset game & generate a new random pokemon
 
 		after each user's guess, move letters from 
 		alphabet array to userguess array using a loop.
@@ -84,50 +92,107 @@ window.onload = function() {
 
 	*/
 
-	//var userPkmnGuess = function() {
+	// get your mystery pokemon
+	mysterypkmn = getPokemon(pokemon);
 
-		// while game on is true
-		while (gameOn == true) {
-
-			// if the letter is not yet in the userGuess array,
-			if (userGuess.indexOf(letterGuess) == -1) {
-				// push onto userGuess array
-				userGuess.push(letterGuess);
-			}
+	// get your guess pokemon blanks
+	guesspkmn = createBlanks(mysterypkmn);
 
 
-			if (index == -1) {
-				guessCount++;
-			}
+	// display guesspkmn blanks
+	document.getElementById('hangman').innerHTML = guesspkmn.join(" ");
 
-			// while the user's guess exists in the array
-			while (index > -1) {
+	document.getElementById('wincount').innerHTML = "Wins: " + wins;
 
-				guesspkmn[index] = letterGuess;
 
-				index = mysterypkmn.indexOf(letterGuess, index + 1);
+	document.onkeyup = function(event) {
 
-			}
+		// variable to hold user's letter guess
+		letterGuess = String.fromCharCode(event.keyCode).toLowerCase();
 
-			// if there are no more blanks left, then player has won
-			if (guesspkmn.indexOf('_') == -1) {
-				wins++;
-			}
+		if (alphabet.indexOf(letterGuess) > -1) {
+			// log letterGuess in the console
+			console.log(letterGuess);
+		}
 
-			// if the guessCount is over 10, the game will end
-			if (guessCount > 10) {
-				gameOn = false;
-			}
+		// grabs the index of the letterGuess in mysterpkmn array
+		index = mysterypkmn.indexOf(letterGuess);
+	
+		// while the user's guess exists in the array
+		while (index > -1) {
+
+			// set the guess value to the corresponding blank
+			guesspkmn[index] = letterGuess;
+
+			document.getElementById('hangman').innerHTML = guesspkmn.join(" ");
+
+			index = mysterypkmn.indexOf(letterGuess, index + 1);
 
 		}
 
-	//};
+		if (mysterypkmn.indexOf(letterGuess) == -1) {
+				// push onto userGuess array
+
+			if (userGuess.indexOf(letterGuess) == -1) {
+				// don't push doubles into user guess array
+				userGuess.push(letterGuess);
+			}
+
+			document.getElementById('letters').innerHTML = "Letters Used: " + userGuess.join(" ");
 
 
-	/* --------------- GAME OBJECT --------------- */
-	// get random pokemon
-	// display blank guesspkmn values
-	// play game
-	// reset game & generate a new random pokemon
+			// increase guess limitcounter here 
+			// using length property of user guess array
+			// so that it counts each letter only once
+			document.getElementById('counter').innerHTML = "Number of Guesses: " + (userGuess.length) + "/10";
+		}
+
+		// if there are no more blanks left, then player has won
+		if (guesspkmn.indexOf('_') == -1) {
+
+			wins ++;
+			
+			document.getElementById('wincount').innerHTML = "Wins: " + wins;
+
+			// get your mystery pokemon
+			mysterypkmn = getPokemon(pokemon);
+
+			// get your guess pokemon blanks
+			guesspkmn = createBlanks(mysterypkmn);
+
+			// display guesspkmn blanks
+			document.getElementById('hangman').innerHTML = guesspkmn.join(" ");
+
+			guessCount = 0;
+
+			document.getElementById('counter').innerHTML = "Number of Guesses: " + guessCount + "/10";
+
+			userGuess = [];
+
+			document.getElementById('letters').innerHTML = "Letters Used: " + userGuess.join(" ");
+		}
+
+
+
+		if (guessCount == 10) {
+			// get your mystery pokemon
+			mysterypkmn = getPokemon(pokemon);
+
+			// get your guess pokemon blanks
+			guesspkmn = createBlanks(mysterypkmn);
+
+			// display guesspkmn blanks
+			document.getElementById('hangman').innerHTML = guesspkmn.join(" ");
+
+			guessCount = 0;
+
+			document.getElementById('counter').innerHTML = "Number of Guesses: " + guessCount + "/10";
+
+			userGuess = [];
+
+			document.getElementById('letters').innerHTML = "Letters Used: " + userGuess.join(" ");
+		}
+
+	}
 
 }
