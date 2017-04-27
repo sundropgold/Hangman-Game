@@ -1,0 +1,116 @@
+/* ********* GENERAL ********** */
+* {
+	margin:0 auto;
+}
+
+body {
+	background-image:url("../images/pkmnbg.png");
+	-webkit-background-size:cover;
+	-moz-background-size:cover;
+	-o-background-size:cover;
+	background-size:cover;
+}	
+
+div {
+	width:700px;
+	margin-left:25%;
+	margin-top:2%;
+}
+
+header {
+	display:block;
+	position:relative;
+	margin-top:12%;
+	left:13%;
+}
+
+div#letters {
+	display:block;
+	position:relative;
+	padding:2%;
+}
+
+div#counter {
+	display: block;
+	position:relative;
+	padding:2%;
+}
+
+div#wincount {
+	display: block;
+	padding:2%;
+}
+
+/* ********** TEXT ********* */
+
+@import url('https://fonts.googleapis.com/css?family=Acme|Montserrat');
+
+h1 {
+	font-family: 'Acme', sans-serif;
+	font-weight:bold;
+	font-size:57px;
+	color: #ffcb05;
+}
+
+p {
+	font-family: 'Montserrat', sans-serif;
+	font-weight:bold;
+	font-size:20px;
+
+	letter-spacing: 1.5px;
+	line-height: 2;
+
+}
+
+p#hangman {
+	letter-spacing:2.5px;
+}
+
+/* ********** MEDIA QUERIES ********** */
+
+@media screen and (max-width: 640px) {
+
+	div {
+		width:400px;
+		margin:0 auto;
+		margin-top:2%;
+	}
+
+	header {
+		left:8%;
+	}
+
+	h1 {
+		font-size:50px;
+		color: #000000;
+	}
+
+	p {
+		font-size:15px;
+	}
+}
+
+@media screen and (min-width: 641px) and (max-width: 768px) {
+
+	div {
+		width:400px;
+		margin:0 auto;
+		margin-top:1%;
+		margin-left:15%;
+	}
+
+	header {
+		left:10%;
+		margin-top:18%;
+	}
+
+	h1 {
+		font-size:50px;
+		color: #000000;
+	}
+
+	p {
+		font-size:15px;
+	}
+}
+}

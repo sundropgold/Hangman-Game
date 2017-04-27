@@ -65,28 +65,7 @@ window.onload = function() {
 					'jolteon', 'flareon', 'porygon', 'omanyte', 'omastar',
 					'kabuto', 'kabutops', 'aerodactyl', 'snorlax',
 					'articuno', 'zapdos', 'moltres', 'dratini', 'dragonair', 
-					'dragonite', 'mewtwo', 'mew', 'chikorita', 'bayleef', 
-					'meganium', 'cyndaquil', 'quilava', 'typhlosion',
-					'totodile', 'croconaw', 'feraligatr', 'sentret', 'furret',
-					'hoothoot', 'noctowl', 'ledyba', 'ledian', 'spinarak', 
-					'ariados', 'crobat', 'chinchou', 'lanturn', 'pichu',
-					'cleffa', 'igglybuff', 'togepi', 'togetic', 'natu', 
-					'xatu', 'mareep', 'flaaffy', 'ampharos', 'bellossom',
-					'marill', 'azumarill', 'sudowoodo', 'politoed', 'hoppip', 
-					'skiploom', 'jumpluff', 'aipom', 'sunkern', 'sunflora',
-					'yanma', 'wooper', 'quagsire', 'espeon', 'umbreon', 
-					'murkrow', 'slowking', 'misdreavus', 'unown', 'wobbuffet',
-					'girafarig', 'pineco', 'forretress', 'dunsparce', 
-					'gligar', 'steelix', 'snubbull', 'granbull', 'qwilfish',
-					'scizor', 'shuckle', 'heracross', 'sneasel', 'teddiursa',
-					'ursaring', 'slugma', 'magcargo', 'swinub', 'piloswine',
-					'corsola', 'remoraid', 'octillery', 'delibird', 
-					'mantine', 'skarmory', 'houndour', 'houndoom', 'kingdra',
-					'phanpy', 'donphan', 'porygon', 'stantler', 'smeargle',
-					'tyrogue', 'hitmontop', 'smoochum', 'elekid', 'magby',
-					'miltank', 'blissey', 'raikou', 'entei', 'suicune', 
-					'larvitar', 'pupitar', 'tyranitar', 'lugia', 'hooh',
-					'celebi'];
+					'dragonite', 'mewtwo', 'mew'];
 
 
 	var mysterypkmn;
@@ -119,8 +98,6 @@ window.onload = function() {
 	
 		return getguesspkmn;
 	};
-
-	/* ----------- KEY PRESS FUNCTIONS ---------- */
 
 	var index; 
 	var letterGuess;
@@ -165,10 +142,12 @@ window.onload = function() {
 		// variable to hold user's letter guess
 		letterGuess = String.fromCharCode(event.keyCode).toLowerCase();
 
+		
 		if (alphabet.indexOf(letterGuess) > -1) {
 			// log letterGuess in the console
 			console.log(letterGuess);
 		}
+		
 
 		// grabs the index of the letterGuess in mysterpkmn array
 		index = mysterypkmn.indexOf(letterGuess);
