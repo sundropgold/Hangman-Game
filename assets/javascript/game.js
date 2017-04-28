@@ -16,10 +16,6 @@ window.onload = function() {
 	// pokemon theme audio
 	var audio = new Audio('assets/javascript/pkmn.mp3');
 
-	var startTime = 50;
-	var endTime = 59;
-	audio.currentTime = startTime;
-
 	// variable to keep track of # of guesses remaining
 	var guessCount = 0; 
 
@@ -192,6 +188,10 @@ window.onload = function() {
 
 		// if there are no more blanks left, then player has won
 		if (guesspkmn.indexOf('_') == -1) {
+		
+			var startTime = 50;
+			var endTime = 59;
+			audio.currentTime = startTime;
 
 			audio.play();
 
@@ -217,7 +217,7 @@ window.onload = function() {
 			document.getElementById('letters').innerHTML = "Letters Used: " + userGuess.join(" ");
 		
 			if(audio.currentTime > endTime) {
-				audio.currentTime = 0;
+				audio.currentTime = 50;
 				audio.pause;
 			}
 		}
