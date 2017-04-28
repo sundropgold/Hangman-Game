@@ -172,6 +172,8 @@ window.onload = function() {
 				userGuess.push(letterGuess);
 			}
 
+			guessCount ++;
+
 			document.getElementById('letters').innerHTML = "Letters Used: " + userGuess.join(" ");
 
 
@@ -208,7 +210,7 @@ window.onload = function() {
 
 
 
-		if (guessCount == 10) {
+		if (userGuess.length > 10) {
 			// get your mystery pokemon
 			mysterypkmn = getPokemon(pokemon);
 
