@@ -13,6 +13,13 @@ window.onload = function() {
 	// variable to keep track of game
 	var gameOn = true;
 
+	// pokemon theme audio
+	var audio = new Audio('assets/javascript/pkmn.mp3');
+
+	var startTime = 50;
+	var endTime = 59;
+	audio.currentTime = startTime;
+
 	// variable to keep track of # of guesses remaining
 	var guessCount = 0; 
 
@@ -186,6 +193,8 @@ window.onload = function() {
 		// if there are no more blanks left, then player has won
 		if (guesspkmn.indexOf('_') == -1) {
 
+			audio.play();
+
 			wins ++;
 			
 			document.getElementById('wincount').innerHTML = "Wins: " + wins;
@@ -206,6 +215,11 @@ window.onload = function() {
 			userGuess = [];
 
 			document.getElementById('letters').innerHTML = "Letters Used: " + userGuess.join(" ");
+		
+			if(audio.currentTime > endTime) {
+				audio.currentTime = 0;
+				audio.pause;
+			}
 		}
 
 
