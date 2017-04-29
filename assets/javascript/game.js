@@ -24,6 +24,9 @@ window.onload = function() {
 	// array to keep track of user's guesses
 	var userGuess =[];
 
+	// array to keep track of pokemon caught
+	var pokeCaught = [];
+
 	document.getElementById("letters").innerHTML = "Letters Used: " + userGuess.join(" ");
 
 
@@ -137,7 +140,11 @@ window.onload = function() {
 	// display guesspkmn blanks
 	document.getElementById('hangman').innerHTML = guesspkmn.join(" ");
 
+	// display wins
 	document.getElementById('wincount').innerHTML = "Wins: " + wins;
+
+	// display pokemon caught
+	document.getElementById('caught').innerHTML = "Pokemon Caught: " +pokeCaught.join(" ");
 
 
 	document.onkeyup = function(event) {
@@ -198,6 +205,10 @@ window.onload = function() {
 			wins ++;
 			
 			document.getElementById('wincount').innerHTML = "Wins: " + wins;
+
+			// push pokemon caught into pokeCaught array
+			pokeCaught.push(mysterypkmn);
+			document.getElementById('caught').innerHTML = "Pokemon Caught: " + pokeCaught.join(" ");
 
 			// get your mystery pokemon
 			mysterypkmn = getPokemon(pokemon);

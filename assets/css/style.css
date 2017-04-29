@@ -14,7 +14,7 @@ body {
 div {
 	width:700px;
 	margin-left:25%;
-	margin-top:2%;
+	margin-top:1%;
 }
 
 header {
@@ -24,21 +24,9 @@ header {
 	left:13%;
 }
 
-div#letters {
-	display:block;
-	position:relative;
-	padding:2%;
-}
-
-div#counter {
-	display: block;
-	position:relative;
-	padding:2%;
-}
-
-div#wincount {
-	display: block;
-	padding:2%;
+div #caught {
+	width:470px;
+	margin-left:0%;
 }
 
 /* ********** TEXT ********* */
